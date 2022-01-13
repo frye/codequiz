@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homework 4: Javascript Quiz</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
+    <header>
+        <h1>Java script quiz</h1>
+        <div id="headerdiv">
+            <button id="scores">View high scores</button>
+            <span id="time">Time:</span>
+        </div>
+    </header>
+
+    <main>
+        <section id="gamearea">
+            <section id="pregameSection">
+                <h1>Coding Quiz challenge</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis animi, ad eligendi tempore nemo inventore cum sapiente quos, voluptates excepturi nesciunt nostrum aspernatur unde debitis rerum hic ipsam ipsa neque.</p>
+                <button id="startButton">Start quiz!</button>
+            </section>
+            <section id="gameSection" hidden>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci, praesentium quam perferendis aliquid, delectus incidunt aliquam id cum deserunt minima veniam perspiciatis alias odio eum officiis? Laudantium provident veritatis odio!
+            </section>
+            <section id="scoresSection" hidden>
+                <p>Some scores</p>
+                <button id="backButton">Back</button>
+            </section>
+        </section>
+    </main>
+
     <script src="js/questions.js"></script>
     <script src="js/quiz.js"></script>
 </body>
+
 </html>

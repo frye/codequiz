@@ -5,3 +5,42 @@
     padding: 0;
     position: relative;
 }
+
+header {
+    padding-bottom: 5px;
+    border-bottom: 2px solid black;
+}
+
+header h1 {
+    text-align: center;
+}
+
+#headerdiv {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#scores {
+    margin-left: 20px;
+}
+
+#time {
+    margin-right: 20px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+#gamearea {
+    width: 50%;
+}
+
+#pregameSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
