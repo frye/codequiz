@@ -13,8 +13,9 @@ console.log(question.title);
 //Get elements
 var scoresButton = document.querySelector('#scores');
 var backButton = document.querySelector('#backButton');
+var startButton = document.querySelector('#startButton');
 
-var preSection = document.querySelector('#preGameSection');
+var preGameSection = document.querySelector('#preGameSection');
 var gameSection = document.querySelector('#gameSection');
 var scoresSection = document.querySelector('#scoresSection');
 
@@ -24,19 +25,25 @@ var init = function() {
 }
 
 var scoresClick = function() {
-    preSection.hidden = true;
+    preGameSection.hidden = true;
     gameSection.hidden = true;
     scoresSection.hidden = false;
 }
 
 var backButtonClick = function() {
-    preSection.hidden = false;
+    preGameSection.hidden = false;
     scoresSection.hidden = true;
+}
+
+var startButtonClick = function() {
+    preGameSection.hidden = true;
+    gameSection.hidden = false;
 }
 
 
 // Event handlers
 scoresButton.addEventListener('click', scoresClick);
 backButton.addEventListener('click', backButtonClick);
+startButton.addEventListener('click', startButtonClick)
 
 init();
