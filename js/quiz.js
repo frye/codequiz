@@ -14,7 +14,7 @@ console.log(question.title);
 var scoresButton = document.querySelector('#scores');
 var backButton = document.querySelector('#backButton');
 
-var preSection = document.querySelector('#pregameSection');
+var preSection = document.querySelector('#preGameSection');
 var gameSection = document.querySelector('#gameSection');
 var scoresSection = document.querySelector('#scoresSection');
 
