@@ -7,8 +7,9 @@
  */
 console.log(questions);
 
-var question = questions[0];
-console.log(question.title);
+//global variables
+var timer;
+var gameTime = 60;
 
 //Get elements
 var scoresButton = document.querySelector('#scores');
@@ -19,27 +20,44 @@ var preGameSection = document.querySelector('#preGameSection');
 var gameSection = document.querySelector('#gameSection');
 var scoresSection = document.querySelector('#scoresSection');
 
-var init = function() {
+var timeField = document.querySelector('#time')
+var timeFieldPrefix = 'Time remaining: '
+
+// init functions purpose is to make sure the page looks good after
+// load.
+var init = function () {
     scoresSection.hidden = true;
     gameSection.hidden = true;
+    timeField.textContent = timeFieldPrefix + gameTime;
 }
 
-var scoresClick = function() {
+// Button click handler functions
+var scoresClick = function () {
     preGameSection.hidden = true;
     gameSection.hidden = true;
     scoresSection.hidden = false;
 }
 
-var backButtonClick = function() {
+var backButtonClick = function () {
     preGameSection.hidden = false;
     scoresSection.hidden = true;
 }
 
-var startButtonClick = function() {
+var startButtonClick = function () {
     preGameSection.hidden = true;
     gameSection.hidden = false;
+    startGame();
 }
 
+// Function that is executed every second
+var timerAction = function () {
+    gameTime--;
+    timeField.textContent = timeFieldPrefix + gameTime;
+}
+
+var startGame = function () {
+    timer = setInterval(timerAction, 1000);
+}
 
 // Event handlers
 scoresButton.addEventListener('click', scoresClick);
