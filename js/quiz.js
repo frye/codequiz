@@ -68,11 +68,15 @@ var timerAction = function () {
 var askQuestion = function(question) {
     questionField.textContent = question.title;
     console.log(question.choices);
+    var choiceOL = document.createElement('ol');
     for (var i = 0; i < question.choices.length; i++ ) {
+        var choice = document.createElement('li');
         var button = document.createElement('button')
         button.textContent = question.choices[i];
-        multipleChoice.append(button);
+        choice.append(button);
+        choiceOL.append(choice);
     }
+    multipleChoice.append(choiceOL);
     multipleChoice.addEventListener('click',handleChoiceClick);
 }
 
