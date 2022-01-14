@@ -10,6 +10,8 @@ console.log(questions);
 //global variables
 var timer;
 var gameTime = 20;
+var questionIndex = 0;
+var choiceOL = document.createElement('ol'); // Ordered list for choices
 
 //Get elements
 var scoresButton = document.querySelector('#scores');
@@ -53,9 +55,12 @@ var startButtonClick = function () {
 }
 
 var handleChoiceClick = function (event) {
-    console.log(event.target);
+    // This event handler is set on the parent div to catch all potential
+    // button clicks. Because of this we need to make sure that the click
+    // happened on a button. And not on the div.
     if ( event.target.tagName === 'BUTTON') {
-        console.log('You hit a button!!!');
+        questionIndex++;
+        askQuestion(questions[questionIndex]);
     }
 }
 
@@ -66,9 +71,9 @@ var timerAction = function () {
 }
 
 var askQuestion = function(question) {
+    choiceOL.innerHTML = '';
     questionField.textContent = question.title;
     console.log(question.choices);
-    var choiceOL = document.createElement('ol');
     for (var i = 0; i < question.choices.length; i++ ) {
         var choice = document.createElement('li');
         var button = document.createElement('button')
@@ -82,7 +87,6 @@ var askQuestion = function(question) {
 
 var startGame = function () {
     timer = setInterval(timerAction, 1000);
-    var questionIndex = 0;
     askQuestion(questions[questionIndex]);
 }
 
