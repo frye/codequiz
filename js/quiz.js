@@ -9,7 +9,7 @@ console.log(questions);
 
 //global variables
 var timer;
-var gameTime = 60;
+var gameTime = 20;
 
 //Get elements
 var scoresButton = document.querySelector('#scores');
@@ -22,6 +22,9 @@ var scoresSection = document.querySelector('#scoresSection');
 
 var timeField = document.querySelector('#time')
 var timeFieldPrefix = 'Time remaining: '
+
+var questionField = document.querySelector('#question');
+var multipleChoice = document.querySelector('#choices');
 
 // init functions purpose is to make sure the page looks good after
 // load.
@@ -49,14 +52,38 @@ var startButtonClick = function () {
     startGame();
 }
 
+var handleChoiceClick = function (event) {
+    console.log(event.target);
+    if ( event.target.tagName === 'BUTTON') {
+        console.log('You hit a button!!!');
+    }
+}
+
 // Function that is executed every second
 var timerAction = function () {
     gameTime--;
     timeField.textContent = timeFieldPrefix + gameTime;
 }
 
+var askQuestion = function(question) {
+    questionField.textContent = question.title;
+    console.log(question.choices);
+    for (var i = 0; i < question.choices.length; i++ ) {
+        var button = document.createElement('button')
+        button.textContent = question.choices[i];
+        multipleChoice.append(button);
+    }
+    multipleChoice.addEventListener('click',handleChoiceClick);
+}
+
 var startGame = function () {
     timer = setInterval(timerAction, 1000);
+    var questionIndex = 0;
+    askQuestion(questions[questionIndex]);
+}
+
+var loseGame = function() {
+    //alert('You lost!');
 }
 
 // Event handlers
