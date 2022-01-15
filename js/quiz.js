@@ -141,7 +141,7 @@ var handleChoiceClick = function (event) {
                 endGame();
             }
         }
-        console.log(questionIndex + ' ' + questions.length)
+        console.log('Score: ' + score)
         if (questionIndex >= (questions.length - 1)) {
             clearInterval(timer);
             endGame();
