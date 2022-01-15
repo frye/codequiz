@@ -16,6 +16,7 @@ var questionIndex = 0;
 var score = 0;
 var choiceOL = document.createElement('ol'); // Ordered list for choices
 var highScores = [];
+var restartButtonVisible = false;
 
 //Get elements
 var scoresButton = document.querySelector('#scores');
@@ -23,6 +24,7 @@ var backButton = document.querySelector('#backButton');
 var startButton = document.querySelector('#startButton');
 var initialsButton = document.querySelector('#buttonInitials');
 var resetScoresButton = document.querySelector('#resetScores');
+var restartButton = document.querySelector('#restartButton');
 
 var preGameSection = document.querySelector('#preGameSection');
 var gameSection = document.querySelector('#gameSection');
@@ -48,6 +50,9 @@ var init = function () {
 
 // Button click handler functions
 var scoresClick = function () {
+    if ( restartButtonVisible ) {
+        restartButton.hidden = false;
+    }
     scoresDiv.innerHTML = '';
     scoresButton.disabled = true;
     preGameSection.hidden = true;
@@ -76,6 +81,8 @@ var backButtonClick = function () {
     preGameSection.hidden = false;
     scoresSection.hidden = true;
     scoresButton.disabled = false;
+    restartButtonVisible = false;
+    restartButton.hidden = true;
 }
 
 var startButtonClick = function () {
@@ -83,6 +90,9 @@ var startButtonClick = function () {
     scoresButton.disabled = true;
     preGameSection.hidden = true;
     gameSection.hidden = false;
+    scoresSection.hidden = true;
+    restartButtonVisible = true;
+    answerResult.textContent = '';
     startGame();
 }
 
@@ -180,5 +190,6 @@ backButton.addEventListener('click', backButtonClick);
 startButton.addEventListener('click', startButtonClick);
 initialsButton.addEventListener('click', saveScoreClick);
 resetScoresButton.addEventListener('click', resetScoresClicked);
+restartButton.addEventListener('click', startButtonClick);
 
 init();

@@ -64,11 +64,19 @@ ol li {
     font-weight: bold;
 }
 
+#choices {
+    padding-left: 20px;
+}
+
 #headerdiv {
     width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+#startButton {
+    margin-top: 10px;
 }
 
 #scores {
@@ -90,8 +98,15 @@ main {
     justify-content: center;
 }
 
+.gameview {
+    margin-top: 20px;
+    border: solid 1px var(--highlight);
+    padding: 10px;
+    border-radius: 15px;
+}
+
 #gamearea {
-    width: 50%;
+    width: 60%;
 }
 
 #preGameDiv {
@@ -99,4 +114,10 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    #gamearea {
+        width: 90%;
+    }
 }

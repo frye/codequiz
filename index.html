@@ -20,7 +20,7 @@
 
     <main>
         <section id="gamearea">
-            <section id="preGameSection">
+            <section id="preGameSection" class="gameview">
                 <div id="preGameDiv">
                     <h1>Coding Quiz</h1>
                     <p>You will be asked a series of multiple choice questions.
@@ -33,17 +33,17 @@
                     <button id="startButton">Start quiz!</button>
                 </div>
             </section>
-            <section id="gameSection" hidden>
+            <section id="gameSection" class="gameview" hidden>
                 <div id="gameDiv">
-                    <h3 id="question">
-                        </h3>
+                    <h2 id="question">
+                        </h2>
                         <div id="choices">
                         </div>
                         <div id="answerResult">
                         </div>
                 </div>
             </section>
-            <section id="endGame" hidden>
+            <section id="endGame" class="gameview" hidden>
                 <div>
                     <h2>Game over!</h2>
                     <h3 id="scoreDisplay"></h3>
@@ -55,10 +55,11 @@
 
                 </div>
             </section>
-            <section id="scoresSection" hidden>
+            <section id="scoresSection" class="gameview" hidden>
                 <div id="scoresDiv">
                 </div>
                 <div id="buttonDiv">
+                    <button id="restartButton" hidden>Restart</button>
                     <button id="backButton">Back</button>
                     <button id="resetScores">Reset scores</button>
                 </div>
