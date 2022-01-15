@@ -75,12 +75,14 @@ var handleChoiceClick = function (event) {
                 endGame();
             }
         }
-        if ( questionIndex >= questions.length) {
+        console.log(questionIndex + ' ' + questions.length)
+        if ( questionIndex >= ( questions.length - 1) ) {
             clearInterval(timer);
             endGame();
+        } else { // If we have questions left
+            questionIndex++;
+            askQuestion(questions[questionIndex]);
         }
-        questionIndex++;
-        askQuestion(questions[questionIndex]);
     }
 }
 
@@ -117,9 +119,10 @@ var startGame = function () {
 }
 
 var endGame = function() {
-    console.log('endGame');
+    var scoreDisplay = document.querySelector('#scoreDisplay');
     gameSection.hidden = true;
     endGameSection.hidden = false;
+    scoreDisplay.textContent = 'Your score: ' + score;
     //preGameSection.hidden = false;
 }
 
