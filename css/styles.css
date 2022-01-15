@@ -1,4 +1,11 @@
 /* CSS Reset */
+:root {
+    --background: rgb(2, 47, 0);
+    --foreground: rgb(206, 255, 205);
+    --highlight: rgb(7, 218, 0);
+    --disabled: rgb(105, 109, 104);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,23 +13,71 @@
     position: relative;
 }
 
-header {
-    padding-bottom: 5px;
-    border-bottom: 2px solid black;
+body {
+    background-color: var(--background);
+    color: var(--foreground);
 }
 
-header h1 {
+button {
+    background-color: var(--foreground);
+    color: var(--background);
+    border: solid 2px var(--highlight);
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 2px;
+    padding: 2px;
+}
+
+button:disabled {
+    color: var(--disabled);
+}
+
+header {
+    margin-top: 20px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 2px solid var(--highlight);
+}
+
+h1 {
+    font-size: 42px;
     text-align: center;
+    margin: 10px;
+}
+
+h2, h3, h4 {
+    font-size: 36px;
+    text-align: center;
+    margin: 10px;
+}
+
+#question {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+p {
+    margin: 5px;
+}
+
+ol li {
+    font-weight: bold;
 }
 
 #headerdiv {
     width: 90%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #scores {
     margin-left: 20px;
+}
+
+#buttonDiv {
+    display: flex;
+    justify-content: center;
 }
 
 #time {

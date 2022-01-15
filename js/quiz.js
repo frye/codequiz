@@ -7,9 +7,10 @@
  */
 console.log(questions);
 
-//global variables
+//global variables and constants
+const GAMETIME = 60;
 var timer;
-var gameTime = 20;
+var gameTime = GAMETIME;
 var penaltyTime = 5;
 var questionIndex = 0;
 var score = 0;
@@ -72,6 +73,8 @@ var backButtonClick = function () {
 }
 
 var startButtonClick = function () {
+    gameTime = GAMETIME;
+    scoresButton.disabled = true;
     preGameSection.hidden = true;
     gameSection.hidden = false;
     startGame();
@@ -85,9 +88,11 @@ var saveScoreClick = function() {
 }
 
 var resetScoresClicked = function() {
-    highScores = [];
-    localStorage.setItem('highScores', JSON.stringify(highScores));
-    scoresClick();
+    if (confirm('Are you sure you want to clear all scores?')) {
+        highScores = [];
+        localStorage.setItem('highScores', JSON.stringify(highScores));
+        scoresClick();
+    }
 }
 
 var handleChoiceClick = function (event) {
@@ -155,6 +160,7 @@ var endGame = function() {
     gameSection.hidden = true;
     endGameSection.hidden = false;
     scoreDisplay.textContent = 'Your score: ' + score;
+    scoresButton.disabled = false;
     //preGameSection.hidden = false;
 }
 
