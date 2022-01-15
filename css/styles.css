@@ -110,6 +110,7 @@ main {
 }
 
 #answerResult {
+    height: 20px;
     margin: 20px;
 }
 

@@ -52,7 +52,7 @@ var init = function () {
 
 // Button click handler functions
 var scoresClick = function () {
-    if ( restartButtonVisible ) {
+    if (restartButtonVisible) {
         restartButton.hidden = false;
     }
     scoresDiv.innerHTML = '';
@@ -98,7 +98,7 @@ var startButtonClick = function () {
     startGame();
 }
 
-var saveScoreClick = function() {
+var saveScoreClick = function () {
     var highScore = {
         player: document.querySelector('#initials').value || 'JD',
         score: score
@@ -109,7 +109,7 @@ var saveScoreClick = function() {
     scoresClick();
 }
 
-var resetScoresClicked = function() {
+var resetScoresClicked = function () {
     if (confirm('Are you sure you want to clear all scores?')) {
         highScores = [];
         localStorage.setItem('highScores', JSON.stringify(highScores));
@@ -125,24 +125,24 @@ var handleChoiceClick = function (event) {
     //Clear the timeout if previous exists before setting another.
     //If answers come faster than the timeout we could hit this condition.
     clearTimeout(answerTimeout);
-    answerTimeout = setTimeout(function(){
+    answerTimeout = setTimeout(function () {
         answerResult.textContent = '';
     }, 2000);
-    if ( event.target.tagName === 'BUTTON') {
+    if (event.target.tagName === 'BUTTON') {
         //check if answer was correct
-        if ( event.target.textContent === questions[questionIndex].answer) {
+        if (event.target.textContent === questions[questionIndex].answer) {
             answerResult.textContent = "Correct!";
             score++;
         } else {
             answerResult.textContent = "Wrong!";
-            if ((gameTime - penaltyTime) <= 0 ) {
+            if ((gameTime - penaltyTime) <= 0) {
                 gameTime = 0;
                 timeField.textContent = timeFieldPrefix + gameTime;
                 endGame();
             }
         }
         console.log(questionIndex + ' ' + questions.length)
-        if ( questionIndex >= ( questions.length - 1) ) {
+        if (questionIndex >= (questions.length - 1)) {
             clearInterval(timer);
             endGame();
         } else { // If we have questions left
@@ -152,21 +152,27 @@ var handleChoiceClick = function (event) {
     }
 }
 
+// shuffle function from w3docs used to shuffle the questions, and the order of choices.
+var shuffle = function (array) {
+    array.sort(() => Math.random() - 0.5);
+}
+
 // Function that is executed every second
 var timerAction = function () {
     gameTime--;
     timeField.textContent = timeFieldPrefix + gameTime;
-    if (gameTime <= 0 ) {
+    if (gameTime <= 0) {
         clearInterval(timer);
         endGame();
     }
 }
 
-var askQuestion = function(question) {
+var askQuestion = function (question) {
     choiceOL.innerHTML = '';
     questionField.textContent = question.title;
     console.log(question.choices);
-    for (var i = 0; i < question.choices.length; i++ ) {
+    shuffle(question.choices);
+    for (var i = 0; i < question.choices.length; i++) {
         var choice = document.createElement('li');
         var button = document.createElement('button')
         button.textContent = question.choices[i];
@@ -174,17 +180,18 @@ var askQuestion = function(question) {
         choiceOL.append(choice);
     }
     multipleChoice.append(choiceOL);
-    multipleChoice.addEventListener('click',handleChoiceClick);
+    multipleChoice.addEventListener('click', handleChoiceClick);
 }
 
 var startGame = function () {
     score = 0;
     questionIndex = 0;
     timer = setInterval(timerAction, 1000);
+    shuffle(questions);
     askQuestion(questions[0]);
 }
 
-var endGame = function() {
+var endGame = function () {
     var scoreDisplay = document.querySelector('#scoreDisplay');
     gameSection.hidden = true;
     endGameSection.hidden = false;
