@@ -109,6 +109,10 @@ main {
     width: 60%;
 }
 
+#answerResult {
+    margin: 20px;
+}
+
 #preGameDiv {
     display: flex;
     flex-direction: column;

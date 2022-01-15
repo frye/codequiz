@@ -38,6 +38,8 @@ var timeFieldPrefix = 'Time remaining: '
 var questionField = document.querySelector('#question');
 var multipleChoice = document.querySelector('#choices');
 var answerResult = document.querySelector('#answerResult');
+// Timeout variable to be used with the Correct/wrong temporary display.
+var answerTimeout;
 
 // init functions purpose is to make sure the page looks good after
 // load.
@@ -119,6 +121,13 @@ var handleChoiceClick = function (event) {
     // This event handler is set on the parent div to catch all potential
     // button clicks. Because of this we need to make sure that the click
     // happened on a button. And not on the div.
+
+    //Clear the timeout if previous exists before setting another.
+    //If answers come faster than the timeout we could hit this condition.
+    clearTimeout(answerTimeout);
+    answerTimeout = setTimeout(function(){
+        answerResult.textContent = '';
+    }, 2000);
     if ( event.target.tagName === 'BUTTON') {
         //check if answer was correct
         if ( event.target.textContent === questions[questionIndex].answer) {
