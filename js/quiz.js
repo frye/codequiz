@@ -199,6 +199,13 @@ var endGame = function () {
         gameTime = 0;
         timeField.textContent = timeFieldPrefix + gameTime;
     } 
+    // Give bonus points if all answers were correct (Based on the time left in the clock.)
+    if (score === questions.length) {
+        if (gameTime) {
+            alert('You rock!\nYou got ' + score + '/' + questions.length + ' correct.\nRemaining gametime has been added to your score.');
+            score += gameTime;
+        }
+    }
     var scoreDisplay = document.querySelector('#scoreDisplay');
     gameSection.hidden = true;
     endGameSection.hidden = false;
