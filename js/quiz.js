@@ -89,6 +89,7 @@ var backButtonClick = function () {
 
 var startButtonClick = function () {
     gameTime = GAMETIME;
+    timeField.textContent = timeFieldPrefix + gameTime;
     scoresButton.disabled = true;
     preGameSection.hidden = true;
     gameSection.hidden = false;
@@ -192,6 +193,12 @@ var startGame = function () {
 }
 
 var endGame = function () {
+    // In case the gameTime ended negative lets reset it here. 
+    // Otherwise display how much time was left when all questions were answered.
+    if (gameTime < 0) {
+        gameTime = 0;
+        timeField.textContent = timeFieldPrefix + gameTime;
+    } 
     var scoreDisplay = document.querySelector('#scoreDisplay');
     gameSection.hidden = true;
     endGameSection.hidden = false;
