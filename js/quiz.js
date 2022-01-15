@@ -10,7 +10,9 @@ console.log(questions);
 //global variables
 var timer;
 var gameTime = 20;
+var penaltyTime = 5;
 var questionIndex = 0;
+var score = 0;
 var choiceOL = document.createElement('ol'); // Ordered list for choices
 
 //Get elements
@@ -21,12 +23,14 @@ var startButton = document.querySelector('#startButton');
 var preGameSection = document.querySelector('#preGameSection');
 var gameSection = document.querySelector('#gameSection');
 var scoresSection = document.querySelector('#scoresSection');
+var endGameSection = document.querySelector('#endGame');
 
 var timeField = document.querySelector('#time')
 var timeFieldPrefix = 'Time remaining: '
 
 var questionField = document.querySelector('#question');
 var multipleChoice = document.querySelector('#choices');
+var answerResult = document.querySelector('#answerResult');
 
 // init functions purpose is to make sure the page looks good after
 // load.
@@ -59,6 +63,22 @@ var handleChoiceClick = function (event) {
     // button clicks. Because of this we need to make sure that the click
     // happened on a button. And not on the div.
     if ( event.target.tagName === 'BUTTON') {
+        //check if answer was correct
+        if ( event.target.textContent === questions[questionIndex].answer) {
+            answerResult.textContent = "Correct!";
+            score++;
+        } else {
+            answerResult.textContent = "Wrong!";
+            if ((gameTime - penaltyTime) <= 0 ) {
+                gameTime = 0;
+                timeField.textContent = timeFieldPrefix + gameTime;
+                endGame();
+            }
+        }
+        if ( questionIndex >= questions.length) {
+            clearInterval(timer);
+            endGame();
+        }
         questionIndex++;
         askQuestion(questions[questionIndex]);
     }
@@ -68,6 +88,10 @@ var handleChoiceClick = function (event) {
 var timerAction = function () {
     gameTime--;
     timeField.textContent = timeFieldPrefix + gameTime;
+    if (gameTime <= 0 ) {
+        clearInterval(timer);
+        endGame();
+    }
 }
 
 var askQuestion = function(question) {
@@ -86,12 +110,17 @@ var askQuestion = function(question) {
 }
 
 var startGame = function () {
+    score = 0;
+    questionIndex = 0;
     timer = setInterval(timerAction, 1000);
-    askQuestion(questions[questionIndex]);
+    askQuestion(questions[0]);
 }
 
-var loseGame = function() {
-    //alert('You lost!');
+var endGame = function() {
+    console.log('endGame');
+    gameSection.hidden = true;
+    endGameSection.hidden = false;
+    //preGameSection.hidden = false;
 }
 
 // Event handlers
