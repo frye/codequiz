@@ -14,16 +14,20 @@ var penaltyTime = 5;
 var questionIndex = 0;
 var score = 0;
 var choiceOL = document.createElement('ol'); // Ordered list for choices
+var highScores = [];
 
 //Get elements
 var scoresButton = document.querySelector('#scores');
 var backButton = document.querySelector('#backButton');
 var startButton = document.querySelector('#startButton');
+var initialsButton = document.querySelector('#buttonInitials');
+var resetScoresButton = document.querySelector('#resetScores');
 
 var preGameSection = document.querySelector('#preGameSection');
 var gameSection = document.querySelector('#gameSection');
 var scoresSection = document.querySelector('#scoresSection');
 var endGameSection = document.querySelector('#endGame');
+var scoresDiv = document.querySelector('#scoresDiv');
 
 var timeField = document.querySelector('#time')
 var timeFieldPrefix = 'Time remaining: '
@@ -38,24 +42,52 @@ var init = function () {
     scoresSection.hidden = true;
     gameSection.hidden = true;
     timeField.textContent = timeFieldPrefix + gameTime;
+    highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 }
 
 // Button click handler functions
 var scoresClick = function () {
+    scoresDiv.innerHTML = '';
+    scoresButton.disabled = true;
     preGameSection.hidden = true;
     gameSection.hidden = true;
+    endGameSection.hidden = true;
     scoresSection.hidden = false;
+    var scoresHeader = document.createElement('h4');
+    var scoresUL = document.createElement('ul');
+    for (var i = 0; i < highScores.length; i++) {
+        var item = document.createElement('li');
+        item.textContent = highScores[i];
+        scoresUL.append(item);
+    }
+    scoresHeader.textContent = 'High scores:';
+    scoresDiv.append(scoresHeader);
+    scoresDiv.append(scoresUL);
 }
 
 var backButtonClick = function () {
     preGameSection.hidden = false;
     scoresSection.hidden = true;
+    scoresButton.disabled = false;
 }
 
 var startButtonClick = function () {
     preGameSection.hidden = true;
     gameSection.hidden = false;
     startGame();
+}
+
+var saveScoreClick = function() {
+    highScores.push(document.querySelector('#initials').value + ': ' + score);
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    // Use the scores button click handler to display high scores.
+    scoresClick();
+}
+
+var resetScoresClicked = function() {
+    highScores = [];
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    scoresClick();
 }
 
 var handleChoiceClick = function (event) {
@@ -129,6 +161,8 @@ var endGame = function() {
 // Event handlers
 scoresButton.addEventListener('click', scoresClick);
 backButton.addEventListener('click', backButtonClick);
-startButton.addEventListener('click', startButtonClick)
+startButton.addEventListener('click', startButtonClick);
+initialsButton.addEventListener('click', saveScoreClick);
+resetScoresButton.addEventListener('click', resetScoresClicked);
 
 init();
