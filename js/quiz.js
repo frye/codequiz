@@ -55,10 +55,16 @@ var scoresClick = function () {
     endGameSection.hidden = true;
     scoresSection.hidden = false;
     var scoresHeader = document.createElement('h4');
-    var scoresUL = document.createElement('ul');
+    var scoresUL = document.createElement('ol');
+    scoresUL.setAttribute('style', 'display: flex; flex-direction: column; justify-content: center; align-items: center;');
+
+    //Sort the high scores to display the player with highest score at the top of the list
+    highScores.sort((a, b) => {
+        return b.score - a.score;
+    });
     for (var i = 0; i < highScores.length; i++) {
         var item = document.createElement('li');
-        item.textContent = highScores[i];
+        item.textContent = 'Player: ' + highScores[i].player + ', Score: ' + highScores[i].score;
         scoresUL.append(item);
     }
     scoresHeader.textContent = 'High scores:';
@@ -81,7 +87,11 @@ var startButtonClick = function () {
 }
 
 var saveScoreClick = function() {
-    highScores.push(document.querySelector('#initials').value + ': ' + score);
+    var highScore = {
+        player: document.querySelector('#initials').value || 'JD',
+        score: score
+    };
+    highScores.push(highScore);
     localStorage.setItem('highScores', JSON.stringify(highScores));
     // Use the scores button click handler to display high scores.
     scoresClick();

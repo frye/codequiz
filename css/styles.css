@@ -1,6 +1,6 @@
 /* CSS Reset */
 :root {
-    --background: rgb(2, 47, 0);
+    --background: rgb(2, 31, 0);
     --foreground: rgb(206, 255, 205);
     --highlight: rgb(7, 218, 0);
     --disabled: rgb(105, 109, 104);
@@ -78,6 +78,7 @@ ol li {
 #buttonDiv {
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 }
 
 #time {
