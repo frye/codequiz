@@ -43,7 +43,7 @@ header {
     border-bottom: 2px solid var(--highlight);
 }
 
-h1 {
+h1, h2, h3, h4 {
     font-size: 42px;
     text-align: center;
     margin: 10px;
@@ -52,22 +52,15 @@ h1 {
 
 h2 {
     font-size: 36px;
-    text-align: center;
-    margin: 10px;
-    color: var(--highlight);
 }
 
 h3 {
     font-size: 32px;
-    text-align: center;
-    margin: 10px;
+    color: var(--foreground);
 }
 
 h4 {
     font-size: 32px;
-    text-align: center;
-    margin: 10px;
-    color: var(--highlight);
 }
 
 #question {
