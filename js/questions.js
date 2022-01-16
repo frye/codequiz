@@ -83,7 +83,6 @@ var questions = [
         title: "How do you create a function in JavaScript?",
         choices: [
             "function:myFunction()",
-            "function = myfunction()",
             "var function() = {}",
             "var myFunction = function() {}"
         ],
