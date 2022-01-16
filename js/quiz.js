@@ -140,6 +140,8 @@ var handleChoiceClick = function (event) {
                 gameTime = 0;
                 timeField.textContent = timeFieldPrefix + gameTime;
                 endGame();
+            } else {
+                gameTime -= penaltyTime;
             }
         }
         console.log('Score: ' + score)
