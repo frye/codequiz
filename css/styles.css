@@ -28,6 +28,11 @@ button {
     padding: 2px;
 }
 
+button:hover {
+    background-color: var(--highlight);
+    border-color: var(--foreground);
+}
+
 button:disabled {
     color: var(--disabled);
 }
@@ -105,6 +110,7 @@ ol li {
 
 #time {
     margin-right: 5%;
+    font-weight: bold;
 }
 
 main {
