@@ -14,6 +14,10 @@ Following GIF shows a high level oveview of the features.
 
 ![JavaScript quiz](assets/quizdemo.gif)
 
+## Technologies
+- HTML
+- CSS
+- Javascript
 
 ## Links
 The GitHub pages hosted version of the quiz is [here](https://frye.github.io/codequiz/).
